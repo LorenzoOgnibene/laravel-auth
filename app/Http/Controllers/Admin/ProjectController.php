@@ -26,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.creation');
     }
 
     /**
@@ -35,9 +35,14 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $project)
     {
-        //
+        $data = $project->all();
+        $newProject = new Project();
+        $newProject->fill($data);
+        $newProject->save();
+        return redirect()->route('admin.projects.show', $newProject->id);
+
     }
 
     /**

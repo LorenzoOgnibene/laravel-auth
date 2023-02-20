@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container p-5">
-    <table class="table table-dark table-hover table-striped">
+  <div class="button-wrapper mb-2 text-center">
+    <a href="{{route('admin.projects.create')}}" class="btn btn-info">Create a new Project post</a>
+  </div>
+   
+  <table class="table table-dark table-hover table-striped">
         <thead>
           <tr>
             <th scope="col">#id</th>
@@ -21,6 +25,6 @@
             </tr>
             @endforeach
         </tbody>
-      </table>
+    </table>
 </div>
 @endsection
