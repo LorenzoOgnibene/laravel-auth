@@ -24,7 +24,7 @@
               <td scope="row">
                 <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info">Show</a>
                 <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-success">Edit</a>
-                <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST" class="d-inline">
+                <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline">
                   @csrf
                   @method('DELETE')
                     <button class="btn btn-danger">Delete</button>

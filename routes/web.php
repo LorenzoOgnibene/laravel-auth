@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ProjectController as ProjectController;
 use App\Http\Controllers\Guest\PageController as PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use RealRashid\SweetAlert\Facades\Alert;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

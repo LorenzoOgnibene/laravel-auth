@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('content')    
+@endif
 <div class="container p-5">
     <div class="card m-auto text-center" style="width: 45rem;">
         <img src="{{$project->image}}" class="card-img-top" alt="...">
@@ -11,7 +12,7 @@
         </div>
         <div class="button-group mb-4">
             <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-info">Edit</a>
-            <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST" class="d-inline">
+            <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
                 <button class="btn btn-danger">Delete</button>

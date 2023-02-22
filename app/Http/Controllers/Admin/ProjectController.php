@@ -7,6 +7,9 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 class ProjectController extends Controller
 {
     /**
@@ -15,7 +18,7 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $projects = Project::paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
@@ -49,7 +52,7 @@ class ProjectController extends Controller
         $newProject->fill($data);
         $newProject->slug = Str::slug($newProject->title);
         $newProject->save();
-        return redirect()->route('admin.projects.show', $newProject->id);
+        return redirect()->route('admin.projects.show', $newProject->slug)->with('message', "creato con successo");
 
     }
 
@@ -61,6 +64,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        if(session('message')){
+            Alert::toast(session('message'), 'success');
+        }
         return view('admin.projects.show', compact('project'));
     }
 
@@ -93,7 +99,7 @@ class ProjectController extends Controller
         ]);
         $project->slug = Str::slug($project->title);
         $project->update($data);
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
@@ -104,6 +110,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
