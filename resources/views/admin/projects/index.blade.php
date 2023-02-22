@@ -21,7 +21,15 @@
               <td scope="row">{{$project->id}}</td>
               <td scope="row">{{$project->title}}</td>
               <td scope="row">{{$project->creation_date}}</td>
-              <td scope="row"><a href="{{route('admin.projects.show', $project)}}" class="btn btn-info">Show</a></td>
+              <td scope="row">
+                <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info">Show</a>
+                <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-info">Edit</a>
+                <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST" class="d-inline">
+                  @csrf
+                  @method('DELETE')
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+              </td>
             </tr>
             @endforeach
         </tbody>

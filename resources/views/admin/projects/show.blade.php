@@ -8,8 +8,15 @@
             <h2 class="card-title">{{$project->title}}</h2>
             <p class="card-text">{{$project->description}}</p>
             <h6 class="card-subtitle mb-2 text-muted">{{$project->creation_date}}</h6>
-
         </div>
-      </div>
+        <div class="button-group mb-4">
+            <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-info">Edit</a>
+            <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
