@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -38,6 +40,12 @@ class ProjectController extends Controller
     public function store(Request $project)
     {
         $data = $project->all();
+        $project->validate([
+            'title'=>'required|unique:projects|min:10|max:200',
+            'description'=>'required|min:25|max:1000',
+            'image'=>'url',
+            'creation_date'=>'date|before:tomorrow'
+        ]);
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->slug = Str::slug($newProject->title);
@@ -78,6 +86,12 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $request->all();
+        $request->validate([
+            'title'=> ['required', Rule::unique('projects')->ignore($project->id) ],
+            'description'=>'required|min:25|max:1000',
+            'image'=>'url',
+            'creation_date'=>'date:d-m-Y|before:tomorrow'
+        ]);
         $project->slug = Str::slug($project->title);
         $project->update($data);
         return redirect()->route('admin.projects.show', $project->id);

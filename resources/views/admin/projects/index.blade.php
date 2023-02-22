@@ -23,7 +23,7 @@
               <td scope="row">{{$project->creation_date}}</td>
               <td scope="row">
                 <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info">Show</a>
-                <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-info">Edit</a>
+                <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-success">Edit</a>
                 <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST" class="d-inline">
                   @csrf
                   @method('DELETE')
@@ -34,5 +34,9 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="">
+      {{ $projects->links() }}
+  </div>
 </div>
 @endsection
