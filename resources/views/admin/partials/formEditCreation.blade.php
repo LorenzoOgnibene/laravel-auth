@@ -17,8 +17,8 @@
     <label for="sale_date" class="form-label">data di uscita</label>
     <input type="text" class="form-control" name="creation_date" value="{{old('creation_date', $project->creation_date)}}">
         
-    <label for="slug" class="form-label">slug</label>
-    <input type="text" class="form-control mb-5" name="slug" value="{{old('slug', $project->slug)}}">
+   {{-- <label for="slug" class="form-label">slug</label> --}}
+    {{-- <input type="text" class="form-control mb-5" name="slug" value="{{old('slug', $project->slug)}}"> --}}
             
     <button type="submit" class="btn btn-danger">Aggiungi</button>
 </form>
