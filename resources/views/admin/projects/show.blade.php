@@ -12,7 +12,7 @@
         </div>
         <div class="button-group mb-4">
             <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-info">Edit</a>
-            <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline">
+            <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline delete-record">
             @csrf
             @method('DELETE')
                 <button class="btn btn-danger">Delete</button>
@@ -20,4 +20,9 @@
         </div>
     </div>
 </div>
+@include('sweetalert::alert')
+@endsection
+
+@section('script')
+  @vite('resources/js/detroyConfirm.js')
 @endsection

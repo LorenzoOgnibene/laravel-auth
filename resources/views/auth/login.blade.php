@@ -1,8 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-4">
-    <div class="row justify-content-center">
+<div class="container text-center p-4">
+    {{-- GIF FOR LOGIN SECTION --}}
+    <iframe src="https://giphy.com/embed/l378znZcUM7b6VDyM" width="384" height="480" frameBorder="0" class="giphy-embed pe-none" allowFullScreen></iframe></p>
+    {{-- LOGIN CARD --}}
+    <div class="row justify-content-center ">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
