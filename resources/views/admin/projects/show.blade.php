@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')    
-@endif
+
 <div class="container p-5">
     <div class="card m-auto text-center" style="width: 45rem;">
         <img src="{{$project->image}}" class="card-img-top" alt="...">

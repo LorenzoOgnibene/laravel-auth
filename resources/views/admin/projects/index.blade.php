@@ -24,10 +24,10 @@
               <td scope="row">
                 <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info">Show</a>
                 <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-success">Edit</a>
-                <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline">
+                <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline delete-record">
                   @csrf
                   @method('DELETE')
-                    <button class="btn btn-danger">Delete</button>
+                  <button class="btn btn-danger" data-id="{{ $project->id }}">Delete</button>
                 </form>
               </td>
             </tr>
@@ -38,5 +38,10 @@
     <div class="">
       {{ $projects->links() }}
   </div>
+  @include('sweetalert::alert')
 </div>
+@endsection
+
+@section('script')
+  @vite('resources/js/detroyConfirm.js')
 @endsection

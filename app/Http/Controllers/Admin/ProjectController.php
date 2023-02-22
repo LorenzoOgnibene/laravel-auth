@@ -19,6 +19,9 @@ class ProjectController extends Controller
      */
     public function index()
     {   
+        if(session('message')){
+            Alert::toast(session('message'), 'success');
+        }
         $projects = Project::paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
@@ -93,7 +96,7 @@ class ProjectController extends Controller
         $data = $request->all();
         $request->validate([
             'title'=> ['required', Rule::unique('projects')->ignore($project->id) ],
-            'description'=>'required|min:25|max:1000',
+            'description'=>'required|min:25|max:2000',
             'image'=>'url',
             'creation_date'=>'date:d-m-Y|before:tomorrow'
         ]);
@@ -112,6 +115,6 @@ class ProjectController extends Controller
     {
         
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', 'proggetto eliminato correttamente');
     }
 }
