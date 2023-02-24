@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -54,6 +54,7 @@ class ProjectController extends Controller
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->slug = Str::slug($newProject->title);
+        $newProject->image = Storage::put('public', $data['image']);                                                                                                             
         $newProject->save();
         return redirect()->route('admin.projects.show', $newProject->slug)->with('message', "creato con successo");
 

@@ -1,4 +1,4 @@
-<form action="{{route($route, $project)}}" method="POST"> 
+<form action="{{route($route, $project)}}" method="POST" enctype="multipart/form-data"> 
     @csrf
     @method($method)
 
@@ -26,6 +26,7 @@
     @error('creation_date')
     <div class="invalid-feedback">{{$message}}</div>
     @enderror
-            
-    <button type="submit" class="btn btn-danger ">Aggiungi</button>
+    <label for="image"  class="form-label">Carica un immagine dai tuoi file</label>
+    <input type="file" name="image" id="" class="form-control mb-2">
+    <button type="submit" class="btn btn-danger">Aggiungi</button>
 </form>
